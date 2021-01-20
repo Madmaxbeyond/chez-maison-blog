@@ -1,6 +1,7 @@
 import './App.css';
 import { useState } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
+import { getUser } from '../../utilities/users-service';
 import AuthPage from '../AuthPage/AuthPage';
 import NewBookPage from '../NewBookPage/NewBookPage';
 import AllBooksPage from '../AllBooksPage/AllBooksPage';
@@ -8,13 +9,13 @@ import NavBar from '../../components/NavBar/NavBar';
 
 
 export default function App() {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(getUser());
 
   return (
     <main className="App">
       { user ?
         <>
-          <NavBar />
+          <NavBar user={user} setUser={setUser} />
           <Switch>
             <Route path="/books/new">
               <NewBookPage />
@@ -26,7 +27,7 @@ export default function App() {
           </Switch>
         </>    
         :
-        <AuthPage />
+        <AuthPage setUser={setUser} />
       }
     </main>
   );

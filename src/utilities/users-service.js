@@ -26,6 +26,10 @@ export function logOut() {
   localStorage.removeItem('token');
 }
 
+export function checkToken() {
+  return usersAPI.checkToken().then(dateStr => new Date(dateStr));
+}
+
 export function getToken() {
   // getItem returns null if there's no string
   const token = localStorage.getItem('token');

@@ -1,15 +1,30 @@
-import * as userService from '../../utilities/users-service';
+import React, { useEffect, useState } from 'react';
+import * as booksAPI from '../../utilities/books-api';
+import BookListItem from '../../components/BookListItem/BookListItem';
 
 export default function AllBooksPage() {
-    async function handleCheckToken() {
-        const expDate = await userService.checkToken();
-        console.log(new Date(expDate));
-    }
+    const [books, setBooks] = useState([]);
 
+    useEffect(() => {
+        async function getBooks() {
+            const books = await booksAPI.getAll();
+            setBooks(books);
+        }
+        getBooks();
+    }, []);
+    
     return (
         <>
         <h1>All Books</h1>
-        <button onClick={handleCheckToken}>Check When My Login Expires</button>
+        <div>
+            {books.map(book => 
+                <BookListItem 
+                    book={book}
+                    key={book._id}
+
+                />  
+            )}
+        </div>
         </>
     );
 }

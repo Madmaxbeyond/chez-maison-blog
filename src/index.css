@@ -84,6 +84,23 @@ code {
   border-radius: 1vmin;
 }
 
+.form-container-button {
+  margin: 1vmin;
+  padding: 3vmin;
+  color: var(--text-dark);
+  background-color: var(--white);
+  font-size: 2vmin;
+  font-weight: bold;
+  text-decoration: none;
+  text-align: center;
+  align-content: center;
+  border: .1vmin solid var(--tan-2);
+  border-radius: 1vmin;
+  outline: none;
+  cursor: pointer;
+  box-shadow: 1px 1px 1px var(--text-light);
+}
+
 p.error-message {
   color: var(--pink-lavender);
   text-align: center;

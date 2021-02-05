@@ -1,14 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
+import {Link, useLocation} from 'react-router-dom';
 
-
-export default function NewBookPage({handleAddBook}){
+export default function EditBookPage({handleUpdateBook}){
+  const location = useLocation();
   const [invalidForm, setInvalidForm] = useState(true);
-  const [formData, setFormData] = useState({
-    title: '',
-    genre: '',
-    published: ''
-  })
-
+  const [formData, setFormData] = useState(location.state.book);
   const formRef = useRef();
 
   useEffect(() => {
@@ -17,7 +13,7 @@ export default function NewBookPage({handleAddBook}){
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    handleAddBook(formData);
+    handleUpdateBook(formData);
   }
 
   const handleChange = (e) => {
@@ -29,48 +25,47 @@ export default function NewBookPage({handleAddBook}){
 
   return (
     <>
-      <h1>Add New Book</h1>
+      <h1>Edit Book Details</h1>
       <form  autoComplete="off" ref={formRef} onSubmit={handleSubmit}>
         <div className="form-group">
-
-          <label>Book's Name (Required)</label>
+          <label>Book Title</label>
           <input
             className="form-control"
             name="title"
             value={formData.title}
             onChange={handleChange}
-            required
           />
         </div>
 
         <div className="form-group">
-          <label>Book genre (Required)</label>
+          <label>Genre</label>
           <input
             className="form-control"
             name="genre"
-            value={formData.genre}
+            value={ formData.genre}
             onChange={handleChange}
-            required
           />
         </div>
+
         <div className="form-group">
-          <label>Date published (Required)</label>
+          <label>Date published</label>
           <input
             className="form-control"
             name="published"
-            value={formData.published}
+            value={ formData.published}
             onChange={handleChange}
-            required
           />
         </div>
+
         <button
           type="submit"
           className="btn"
           onClick={handleSubmit}
           disabled={invalidForm}
         >
-          Add Book
+          Save Changes
         </button>
+        <Link to="/books">Cancel</Link>
       </form>
     </>
   );

@@ -25,8 +25,11 @@ app.use(express.static(path.join(__dirname, 'build')));
 // Be sure to mount before routes
 app.use(require('./config/checkToken'));
 
+const ensureLoggedIn = require('./config/ensureLoggedIn');
+
 // Put API routes here, before the "catch all" route
 app.use('/api/users', require('./routes/api/users'));
+app.use('/api/books', ensureLoggedIn, require('./routes/api/books'));
 
 // The following "catch all" route (note the *) is necessary
 // to return the index.html on all non-AJAX requests

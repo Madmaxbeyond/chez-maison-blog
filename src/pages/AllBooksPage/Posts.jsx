@@ -15,7 +15,7 @@ export default function AllBooksPage() {
     
     return (
         <>
-        <h1>All Books</h1>
+        <h1>Posts</h1>
         <div>
             {books.map(book => 
                 <BookListItem 

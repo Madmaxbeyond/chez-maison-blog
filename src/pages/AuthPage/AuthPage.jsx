@@ -7,7 +7,7 @@ export default function AuthPage({ setUser }) {
 
     return (
         <main>
-            <h1>Welcome to Your Personal Book Repository</h1>
+            <h1>Welcome to Chez Maison</h1>
             { showLogin ?
             <LoginForm setUser={setUser} />
             :
